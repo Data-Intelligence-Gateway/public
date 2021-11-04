@@ -1,0 +1,46 @@
+version: 2
+
+seeds:
+  - name: naics_2002
+    description: "NAICS codes definition and descriptions as defined on 2002"
+    columns:
+      - name: code
+        tests:
+          - unique
+          - not_null
+      - name: title
+        tests:
+          - not_null
+
+  - name: naics_2007
+    description: NAICS codes definition and descriptions as defined on 2007
+    columns:
+      - name: code
+        tests:
+          - unique
+          - not_null
+      - name: title
+        tests:
+          - not_null
+
+  - name: naics_2012
+    description: NAICS codes definition and descriptions as defined on 2012
+    columns:
+      - name: code
+        tests:
+          - unique
+          - not_null
+      - name: title
+        tests:
+          - not_null
+
+  - name: naics_2017
+    description: NAICS codes definition and descriptions as defined on 2017
+    columns:
+      - name: code
+        tests:
+          - unique
+          - not_null
+      - name: title
+        tests:
+          - not_null
