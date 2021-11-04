@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: stg_f5500_all
+    tests:
+        - columns_are_mutually_exclusive:
+            col1: ack_id
+            col2: filing_id
