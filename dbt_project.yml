@@ -25,6 +25,11 @@ clean-targets:         # directories to be removed by `dbt clean`
     - "dbt_modules"
 
 
+# Configuring global variables
+vars:
+    source_table: '_dbt_source_relation'
+
+
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
@@ -34,4 +39,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
     aprcot_DW:
         src_pre_processing:
+            materialized: view
+        dim_tables:
+            materialized: view
+        fct_tables:
             materialized: view
