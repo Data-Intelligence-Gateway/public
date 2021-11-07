@@ -24,6 +24,9 @@ clean-targets:         # directories to be removed by `dbt clean`
     - "target"
     - "dbt_modules"
 
+on-run-start:
+    - '{{create_udfs()}}'
+
 
 # Configuring global variables
 vars:
