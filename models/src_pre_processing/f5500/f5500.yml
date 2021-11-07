@@ -1,8 +1,14 @@
 version: 2
 
 models:
-  - name: stg_f5500_all
+  - name: stg_unified_f5500_all
     tests:
-        - columns_are_mutually_exclusive:
-            col1: ack_id
-            col2: filing_id
+      - columns_are_mutually_exclusive:
+          col1: ack_id
+          col2: filing_id
+  - name: stg_f5500_all_clean
+    columns:
+      - name: "{{ var('f5500_id') }}"
+        tests:
+          - unique
+          - not_null

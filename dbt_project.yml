@@ -27,8 +27,40 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 # Configuring global variables
 vars:
-    source_table: '_dbt_source_relation'
-
+    aprcot_DW:
+        source_table: '_dbt_source_relation'
+        f5500_id: 'f5500_id'
+        f5500_ein: 'ein'
+        f5500_plan_effective_date: 'plan_effective_date'
+        f5500_plan_name: 'plan_name'
+        f5500_date_received: 'date_received'
+        f5500_naics_code: 'naics_code'
+        f5500_sponsor_corporate_name: 'sponsor_corporate_name'
+        f5500_doing_busines_as_name: 'doing_busines_as_name'
+        f5500_boy_partcp_count: 'boy_partcp_count'
+        f5500_is_boy_partcp_count_active_only: 'is_boy_partcp_count_active_only'
+        f5500_eoy_active_partcp_count: 'eoy_active_partcp_count'
+        f5500_pre_2009_mailing_address: 'pre_2009_mailing_address'
+        f5500_pre_2009_mailing_city: 'pre_2009_mailing_city'
+        f5500_pre_2009_state: 'pre_2009_state'
+        f5500_pre_2009_zip_code: 'pre_2009_zip_code'
+        f5500_pre_2009_loc_address: 'pre_2009_loc_address'
+        f5500_us_mail_address1: 'us_mail_address1'
+        f5500_us_mail_address2: 'us_mail_address2'
+        f5500_us_mail_city: 'us_mail_city'
+        f5500_us_mail_state: 'us_mail_state'
+        f5500_us_mail_zip_code: 'us_mail_zip_code'
+        f5500_us_loc_address1: 'us_loc_address1'
+        f5500_us_loc_address2: 'us_loc_address2'
+        f5500_us_loc_city: 'us_loc_city'
+        f5500_us_loc_state: 'us_loc_state'
+        f5500_us_loc_zip_code: 'us_loc_zip_code'
+        f5500_foreign_mail_city: 'foreign_mail_city'
+        f5500_foreign_mail_province_or_state: 'foreign_mail_province_or_state'
+        f5500_foreign_mail_country: 'foreign_mail_country'
+        f5500_foreign_mail_postal_code: 'foreign_mail_postal_code'
+        f5500_contact_phone_num: 'contact_phone_num'
+        f5500_contact_name: 'contact_name'
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
