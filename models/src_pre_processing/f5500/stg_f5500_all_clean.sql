@@ -10,7 +10,7 @@ stg_renamed_cols_f5500_all as (
       spons_dfe_ein as {{ var('f5500_ein') }},
       plan_eff_date as {{ var('f5500_plan_effective_date') }},
       {{ var('f5500_plan_name') }}, {{ var('f5500_date_received') }},
-      business_code as {{ var('f5500_naics_code') }},
+      {{target.schema}}.f_cast_text_to_numeric_or_null(business_code) as {{ var('f5500_naics_code') }},
       sponsor_dfe_name as {{ var('f5500_sponsor_corporate_name') }},
       sponsor_dfe_name as {{ var('f5500_doing_busines_as_name') }},
       coalesce(tot_act_partcp_boy_cnt, tot_partcp_boy_cnt) as {{ var('f5500_boy_partcp_count') }},
