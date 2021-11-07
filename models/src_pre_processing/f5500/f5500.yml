@@ -7,6 +7,9 @@ models:
           col1: ack_id
           col2: filing_id
   - name: stg_f5500_all_clean
+    tests:
+      - each_column_has_at_least_one_value__long_run:
+          run_test: False
     columns:
       - name: "{{ var('f5500_id') }}"
         tests:
