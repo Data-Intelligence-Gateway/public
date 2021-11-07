@@ -6,7 +6,7 @@ models:
       - columns_are_mutually_exclusive:
           col1: ack_id
           col2: filing_id
-  - name: stg_f5500_all_clean
+  - name: stg_f5500_all_deduped_ids
     tests:
       - each_column_has_at_least_one_value__long_run:
           run_test: False
@@ -15,3 +15,8 @@ models:
         tests:
           - unique
           - not_null
+      - name: "{{ var('f5500_naics_code') }}"
+        tests:
+          - relationships:
+              to: ref('dim_naics')
+              field: code
