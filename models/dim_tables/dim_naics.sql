@@ -8,17 +8,14 @@ with stg_unified_naics as (
 
 stg_source_year_and_numeric_codes_naics as (
     select 
-      -- https://stackoverflow.com/a/40564710/3517025
-      regexp_replace({{ var('source_table') }}, '\D','','g'):: numeric as source_year, 
+      {{ extract_year_from_source_table_column() }}:: numeric as source_year, 
       cast(code as numeric), title, description
     from stg_unified_naics
-    -- https://stackoverflow.com/a/2894527/3517025
-    where code ~ E'^\\d+$'
+    where {{ column_is_digits_only('code')}}
 ),
 
 stg_numbered_duplicate_naics as (
     select *,
-      --https://stackoverflow.com/a/966215/3517025
       ROW_NUMBER() OVER (PARTITION BY code ORDER BY source_year desc) AS rownumber
     from stg_source_year_and_numeric_codes_naics
 ),
