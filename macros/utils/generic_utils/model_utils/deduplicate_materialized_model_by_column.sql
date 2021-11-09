@@ -1,4 +1,4 @@
-{% macro deduplicate_model_by_column(model, corrupted_column) -%}
+{% macro deduplicate_materialized_model_by_column(model, corrupted_column) -%}
 
 with original_model as (
   select *
