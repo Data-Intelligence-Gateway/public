@@ -1,12 +1,12 @@
 version: 2
 
 models:
-  - name: stg_unified_f5500_all
+  - name: stg_f5500_all_0_unified
     tests:
       - columns_are_mutually_exclusive:
           col1: ack_id
           col2: filing_id
-  - name: stg_f5500_all_deduped_ids
+  - name: stg_f5500_all_2_deduped_ids
     tests:
       - each_column_has_at_least_one_value__long_run:
           run_test: False
