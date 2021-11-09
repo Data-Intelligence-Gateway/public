@@ -42,6 +42,7 @@ vars:
         f5500_doing_busines_as_name: 'doing_busines_as_name'
         f5500_boy_partcp_count: 'boy_partcp_count'
         f5500_is_boy_partcp_count_active_only: 'is_boy_partcp_count_active_only'
+        f5500_is_eoy_partcp_count_active_only: 'is_eoy_partcp_count_active_only'
         f5500_eoy_active_partcp_count: 'eoy_active_partcp_count'
         f5500_pre_2009_mailing_address: 'pre_2009_mailing_address'
         f5500_pre_2009_mailing_city: 'pre_2009_mailing_city'
@@ -58,12 +59,24 @@ vars:
         f5500_us_loc_city: 'us_loc_city'
         f5500_us_loc_state: 'us_loc_state'
         f5500_us_loc_zip_code: 'us_loc_zip_code'
+        f5500_foreign_address1: 'foreign_address_1'
+        f5500_foreign_address2: 'foreign_address_2'
         f5500_foreign_mail_city: 'foreign_mail_city'
         f5500_foreign_mail_province_or_state: 'foreign_mail_province_or_state'
         f5500_foreign_mail_country: 'foreign_mail_country'
         f5500_foreign_mail_postal_code: 'foreign_mail_postal_code'
+        f5500_foreign_loc_address1: 'foreign_loc_address1'
+        f5500_foreign_loc_address2: 'foreign_loc_address2'
+        f5500_foreign_loc_city: 'foreign_loc_city'
+        f5500_foreign_loc_province_or_state: 'foreign_loc_province_or_state'
+        f5500_foreign_loc_country: 'foreign_loc_country'
+        f5500_foreign_loc_postal_code: 'foreign_loc_postal_code'
         f5500_contact_phone_num: 'contact_phone_num'
+        f5500_foreign_phone_number: foreign_phone_number
         f5500_contact_name: 'contact_name'
+        f5500_admin_signed_name: 'plan_admin_name'
+        f5500_admin_phone_num: 'admin_phone_num'
+        f5500_admin_foreign_phone_num: 'admin_foreign_phone_num'
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models

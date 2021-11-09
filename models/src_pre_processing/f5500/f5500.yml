@@ -1,12 +1,7 @@
 version: 2
 
 models:
-  - name: stg_f5500_all_0_unified
-    tests:
-      - columns_are_mutually_exclusive:
-          col1: ack_id
-          col2: filing_id
-  - name: stg_f5500_all_2_deduped_ids
+  - name: stg_f5500_all_1_deduped_ids
     tests:
       - each_column_has_at_least_one_value__long_run:
           run_test: False
@@ -16,7 +11,18 @@ models:
           - unique
           - not_null
       - name: "{{ var('f5500_naics_code') }}"
+        # tests:
+          # - relationships:
+          #     to: ref('dim_naics')
+          #     field: code
+  - name: stg_f5500_sf_0_unified
+    tests:
+      - each_column_has_at_least_one_value__long_run:
+          run_test: False
+      - dbt_utils.equality:
+          compare_model: ref('stg_f5500_all_1_deduped_ids')
+    columns:
+      - name: "{{ var('f5500_id') }}"
         tests:
-          - relationships:
-              to: ref('dim_naics')
-              field: code
+          - unique
+          - not_null
