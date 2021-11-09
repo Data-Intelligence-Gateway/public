@@ -1,7 +1,9 @@
-with stg_unified_f5500_all as (
-    select *
-    from {{ref('stg_unified_f5500_all')}}
-),
+{% set upstream = ref('stg_f5500_all_0_unified') -%}
+
+with stg_f5500_all as (
+  select *
+  from {{ upstream }}
+), 
 
 stg_renamed_cols_f5500_all as (
     select 
@@ -37,7 +39,7 @@ stg_renamed_cols_f5500_all as (
       spons_dfe_mail_forgn_postal_cd as {{ var('f5500_foreign_mail_postal_code') }},
       spons_dfe_phone_num as {{ var('f5500_contact_phone_num') }},
       spons_signed_name as {{ var('f5500_contact_name') }}
-    from stg_unified_f5500_all
+    from stg_f5500_all
 )
 
 select * from stg_renamed_cols_f5500_all
