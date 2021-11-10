@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: fct_f5500
+    columns:
+      - name: "{{ var('f5500_id') }}"
+        tests:
+          - unique
+          - not_null
