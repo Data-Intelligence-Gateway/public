@@ -13,7 +13,7 @@ with stg_f5500_sf_unified as (
 
   -- sf_spons_signed_name is a person's name
 
-  {%- set cols = ['ack_id', 'sf_spons_ein', 'sf_plan_eff_date', 'sf_plan_name', 'sf_business_code', 'date_received',
+  {%- set cols = ['ack_id', 'sf_spons_ein', 'sf_plan_year_begin_date', 'sf_plan_eff_date', 'sf_plan_name', 'sf_business_code', 'date_received',
                   'sf_sponsor_name', 'sf_sponsor_dfe_dba_name', 'sf_tot_act_partcp_boy_cnt', 'sf_tot_partcp_boy_cnt', 'sf_tot_act_partcp_eoy_cnt', 'sf_partcp_account_bal_cnt',
                   'sf_spons_us_address1', 'sf_spons_us_address2', 'sf_spons_us_city', 'sf_spons_us_state', 'sf_spons_us_zip',
                   'sf_spons_loc_us_address1', 'sf_spons_loc_us_address2', 'sf_spons_loc_us_city', 'sf_spons_loc_us_state', 'sf_spons_loc_us_zip',
@@ -30,10 +30,14 @@ stg_renamed_cols_f5500_sf as (
       {{ var('source_table') }},
       ack_id as {{ var('f5500_id') }},
       sf_spons_ein as {{ var('f5500_ein') }},
-      sf_plan_eff_date as {{ var('f5500_plan_effective_date') }},
+      {{ target.schema }}.f_cast_text_to_date_or_null(sf_plan_year_begin_date) as {{ var('f5500_plan_year_begin_date') }},
+      {{ add_corrupted_date_col_original_text('sf_plan_year_begin_date') }} as {{ var('f5500_corrupted_plan_year_begin_date') }},
+      {{ target.schema }}.f_cast_text_to_date_or_null(sf_plan_eff_date) as {{ var('f5500_plan_effective_date') }},
+      {{ add_corrupted_date_col_original_text('sf_plan_eff_date') }} as {{ var('f5500_corrupted_plan_eff_date') }},
       sf_plan_name as {{ var('f5500_plan_name') }},
-      date_received as {{ var('f5500_date_received') }},
-      {{target.schema}}.f_cast_text_to_numeric_or_null(sf_business_code) as {{ var('f5500_naics_code') }},
+      {{ target.schema }}.f_cast_text_to_date_or_null(date_received) as {{ var('f5500_date_received') }},
+      {{ add_corrupted_date_col_original_text('date_received') }} as {{ var('f5500_corrupted_date_received_date') }},
+      {{ target.schema }}.f_cast_text_to_numeric_or_null(sf_business_code) as {{ var('f5500_naics_code') }},
       sf_sponsor_name as {{ var('f5500_sponsor_corporate_name') }},
       sf_sponsor_dfe_dba_name as {{ var('f5500_doing_busines_as_name') }},
       coalesce(sf_tot_act_partcp_boy_cnt, sf_tot_partcp_boy_cnt) as {{ var('f5500_boy_partcp_count') }},

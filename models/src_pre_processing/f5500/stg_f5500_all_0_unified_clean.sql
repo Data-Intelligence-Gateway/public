@@ -18,7 +18,7 @@ with stg_f5500_all_unified as (
   -- spons_signed_name is a person's name
   -- do we need admin name and phone? 
 
-  {%- set cols = ['ack_id', 'filing_id', 'spons_dfe_ein', 'plan_eff_date', 'plan_name', 'business_code', 'date_received',
+  {%- set cols = ['ack_id', 'filing_id', 'spons_dfe_ein', 'form_plan_year_begin_date', 'plan_eff_date', 'plan_name', 'business_code', 'date_received',
                   'sponsor_dfe_name', 'spons_dfe_dba_name', 'tot_act_partcp_boy_cnt', 'tot_partcp_boy_cnt', 'tot_active_partcp_cnt',
                   'spons_dfe_mail_str_address', 'spons_dfe_city', 'spons_dfe_state', 'spons_dfe_zip_code', 'spons_dfe_loc_addr',
                   'spons_dfe_mail_us_address1', 'spons_dfe_mail_us_address2', 'spons_dfe_mail_us_city', 'spons_dfe_mail_us_state', 'spons_dfe_mail_us_zip',
@@ -36,10 +36,14 @@ stg_renamed_cols_f5500_all as (
       {{ var('source_table') }},
       coalesce(ack_id, cast(filing_id as text)) as {{ var('f5500_id') }},
       spons_dfe_ein as {{ var('f5500_ein') }},
-      plan_eff_date as {{ var('f5500_plan_effective_date') }},
+      {{ target.schema }}.f_cast_text_to_date_or_null(form_plan_year_begin_date) as {{ var('f5500_plan_year_begin_date') }},
+      {{ add_corrupted_date_col_original_text('form_plan_year_begin_date') }} as {{ var('f5500_corrupted_plan_year_begin_date') }},
+      {{ target.schema }}.f_cast_text_to_date_or_null(plan_eff_date) as {{ var('f5500_plan_effective_date') }},
+      {{ add_corrupted_date_col_original_text('plan_eff_date') }} as {{ var('f5500_corrupted_plan_eff_date') }},
       plan_name as {{ var('f5500_plan_name') }},
-      date_received as {{ var('f5500_date_received') }},
-      {{target.schema}}.f_cast_text_to_numeric_or_null(business_code) as {{ var('f5500_naics_code') }},
+      {{ target.schema }}.f_cast_text_to_date_or_null(date_received) as {{ var('f5500_date_received') }},
+      {{ add_corrupted_date_col_original_text('date_received') }} as {{ var('f5500_corrupted_date_received_date') }},
+      {{ target.schema }}.f_cast_text_to_numeric_or_null(business_code) as {{ var('f5500_naics_code') }},
       sponsor_dfe_name as {{ var('f5500_sponsor_corporate_name') }},
       spons_dfe_dba_name as {{ var('f5500_doing_busines_as_name') }},
       coalesce(tot_act_partcp_boy_cnt, tot_partcp_boy_cnt) as {{ var('f5500_boy_partcp_count') }},
