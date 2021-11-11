@@ -34,6 +34,7 @@ with stg_f5500_all_unified as (
 stg_renamed_cols_f5500_all as (
     select 
       {{ var('source_table') }},
+      {{ extract_year_from_source_table_column() }} as {{ var('f5500_source_table_year') }},
       coalesce(ack_id, cast(filing_id as text)) as {{ var('f5500_id') }},
       spons_dfe_ein as {{ var('f5500_ein') }},
       {{ target.schema }}.f_cast_text_to_date_or_null(form_plan_year_begin_date) as {{ var('f5500_plan_year_begin_date') }},
@@ -49,6 +50,7 @@ stg_renamed_cols_f5500_all as (
       coalesce(tot_act_partcp_boy_cnt, tot_partcp_boy_cnt) as {{ var('f5500_boy_partcp_count') }},
       tot_act_partcp_boy_cnt is not NULL as {{ var('f5500_is_boy_partcp_count_active_only') }},
       tot_active_partcp_cnt as {{ var('f5500_eoy_active_partcp_count') }},
+      True as {{ var('f5500_is_eoy_partcp_count_active_only') }},
       spons_dfe_mail_str_address as {{ var('f5500_pre_2009_mailing_address') }},
       spons_dfe_city as {{ var('f5500_pre_2009_mailing_city') }},
       spons_dfe_state as {{ var('f5500_pre_2009_state') }},

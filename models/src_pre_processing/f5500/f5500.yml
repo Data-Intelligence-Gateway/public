@@ -10,11 +10,6 @@ models:
         tests:
           - unique
           - not_null
-      - name: "{{ var('f5500_naics_code') }}"
-        # tests:
-          # - relationships:
-          #     to: ref('dim_naics')
-          #     field: code
   - name: stg_f5500_sf_0_unified
     tests:
       - each_column_has_at_least_one_value__long_run:

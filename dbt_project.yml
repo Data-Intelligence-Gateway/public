@@ -32,6 +32,7 @@ on-run-start:
 vars:
     aprcot_DW:
         source_table: '_dbt_source_relation'
+        f5500_source_table_year: 'source_table_year'
         f5500_id: 'f5500_id'
         f5500_ein: 'ein'
         f5500_plan_year_begin_date: 'plan_year_begin_date'
@@ -79,8 +80,8 @@ vars:
         f5500_foreign_phone_number: foreign_phone_number
         f5500_contact_name: 'contact_name'
         f5500_admin_signed_name: 'plan_admin_name'
-        f5500_admin_phone_num: 'admin_phone_num'
-        f5500_admin_foreign_phone_num: 'admin_foreign_phone_num'
+        f5500_admin_phone_num: 'plan_admin_phone_num'
+        f5500_admin_foreign_phone_num: 'plan_admin_foreign_phone_num'
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
