@@ -1,10 +1,21 @@
 version: 2
 
 models:
+  - name: stg_f5500_all_0_unified_clean
+    tests:
+      - data_loss_against_pattern_union__long:
+          source_tables_prefixes: 
+            - f5500_all
+          acceptable_loss: 0.00
+          run_test: True
   - name: stg_f5500_all_1_deduped_ids
     tests:
-      - each_column_has_at_least_one_value__long_run:
+      - each_column_has_at_least_one_value__long:
           run_test: False
+      - data_loss_against_model:
+          other_model: stg_f5500_all_0_unified_clean
+          acceptable_loss: 0.001
+          run_test: True
     columns:
       - name: "{{ var('f5500_id') }}"
         tests:
@@ -12,8 +23,13 @@ models:
           - not_null
   - name: stg_f5500_sf_0_unified
     tests:
-      - each_column_has_at_least_one_value__long_run:
+      - each_column_has_at_least_one_value__long:
           run_test: False
+      - data_loss_against_pattern_union__long:
+          source_tables_prefixes: 
+            - f5500_sf
+          acceptable_loss: 0.00
+          run_test: True
     columns:
       - name: "{{ var('f5500_id') }}"
         tests:
