@@ -12,7 +12,7 @@ models:
     tests:
       - each_column_has_at_least_one_value__long:
           run_test: False
-      - data_loss_against_model:
+      - data_loss_against_model__long:
           other_model: stg_f5500_all_0_unified_clean
           acceptable_loss: 0.001
           run_test: True
