@@ -30,7 +30,7 @@ stg_renamed_cols_f5500_sf as (
       {{ var('source_table') }},
       {{ extract_year_from_source_table_column() }} as {{ var('f5500_source_table_year') }},
       ack_id as {{ var('f5500_id') }},
-      sf_spons_ein as {{ var('f5500_ein') }},
+      cast({{ extract_digits_from_column('sf_spons_ein')}} as numeric) as {{ var('f5500_ein') }},
       {{ target.schema }}.f_cast_text_to_date_or_null(sf_plan_year_begin_date) as {{ var('f5500_plan_year_begin_date') }},
       {{ add_corrupted_date_col_original_text('sf_plan_year_begin_date') }} as {{ var('f5500_corrupted_plan_year_begin_date') }},
       {{ target.schema }}.f_cast_text_to_date_or_null(sf_plan_eff_date) as {{ var('f5500_plan_effective_date') }},

@@ -36,7 +36,7 @@ stg_renamed_cols_f5500_all as (
       {{ var('source_table') }},
       {{ extract_year_from_source_table_column() }} as {{ var('f5500_source_table_year') }},
       coalesce(ack_id, cast(filing_id as text)) as {{ var('f5500_id') }},
-      spons_dfe_ein as {{ var('f5500_ein') }},
+      cast({{ extract_digits_from_column('spons_dfe_ein')}} as numeric)  as {{ var('f5500_ein') }},
       {{ target.schema }}.f_cast_text_to_date_or_null(form_plan_year_begin_date) as {{ var('f5500_plan_year_begin_date') }},
       {{ add_corrupted_date_col_original_text('form_plan_year_begin_date') }} as {{ var('f5500_corrupted_plan_year_begin_date') }},
       {{ target.schema }}.f_cast_text_to_date_or_null(plan_eff_date) as {{ var('f5500_plan_effective_date') }},
