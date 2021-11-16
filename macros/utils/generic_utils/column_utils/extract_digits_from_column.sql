@@ -1,3 +1,6 @@
 {% macro extract_digits_from_column(column_name) -%}
-    regexp_replace({{ column_name }}, '\D','','g')
+CASE 
+  WHEN regexp_replace({{ column_name }}, '\D','','g') <> '' THEN regexp_replace({{ column_name }}, '\D','','g')
+  ELSE NULL
+END
 {%- endmacro %}
