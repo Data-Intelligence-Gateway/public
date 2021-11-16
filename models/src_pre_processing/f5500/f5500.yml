@@ -21,7 +21,7 @@ models:
         tests:
           - unique
           - not_null
-  - name: stg_f5500_sf_0_unified
+  - name: stg_f5500_sf_0_unified_clean
     tests:
       - each_column_has_at_least_one_value__long:
           run_test: False
