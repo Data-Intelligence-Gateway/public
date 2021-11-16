@@ -27,6 +27,9 @@ clean-targets:         # directories to be removed by `dbt clean`
 on-run-start:
     - '{{create_udfs()}}'
 
+# https://docs.getdbt.com/reference/resource-configs/quote_columns
+seeds:
+  +quote_columns: true
 
 # Configuring global variables
 vars:
