@@ -1,5 +1,5 @@
 with stg_f5500_sf_unified as (
-  {%- set f5500_sf = dbt_utils.get_relations_by_pattern('bronze%', 'f5500_sf%') -%}
+  {%- set f5500_sf = dbt_utils.get_relations_by_pattern(var('raw_schema') + '%', 'f5500_sf%') -%}
 
   -- test business code for naics values
   -- taking sf_tot_act_partcp_boy_cnt where possible for more accurate number, sf_tot_partcp_boy_cnt includes inactive participants

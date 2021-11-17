@@ -34,6 +34,7 @@ seeds:
 # Configuring global variables
 vars:
     aprcot_DW:
+        raw_schema: 'bronze'
         source_table: '_dbt_source_relation'
         f5500_source_table_year: 'source_table_year'
         f5500_id: 'f5500_id'

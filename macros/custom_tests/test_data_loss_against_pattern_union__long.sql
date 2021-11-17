@@ -6,7 +6,7 @@
         {% for prefix in source_tables_prefixes %}
             {# https://stackoverflow.com/a/32700975/3517025 #}
             {# basically a hack for += in jinja #}
-            {% if unified_raw_tables.append(unified_raw_tables.pop() + dbt_utils.get_relations_by_pattern('bronze%', prefix + '%')) %}{% endif %} 
+            {% if unified_raw_tables.append(unified_raw_tables.pop() + dbt_utils.get_relations_by_pattern(var('raw_schema') + '%', prefix + '%')) %}{% endif %} 
         {% endfor %}
         {{ dbt_utils.union_relations(relations=unified_raw_tables.pop()) }}
     ), 
