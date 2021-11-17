@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: fct_f5500
+    tests:
+      - data_loss_against_pattern_union__long:
+          source_tables_prefixes: 
+              - f5500_all
+              - f5500_sf
+          acceptable_loss: 0.001
+          run_test: True    
+    columns:
+      - name: "{{ var('f5500_id') }}"
+        tests:
+          - unique
+          - not_null

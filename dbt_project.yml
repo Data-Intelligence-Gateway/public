@@ -2,7 +2,7 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'my_new_project'
+name: 'aprcot_DW'
 version: '1.0.0'
 config-version: 2
 
@@ -24,6 +24,68 @@ clean-targets:         # directories to be removed by `dbt clean`
     - "target"
     - "dbt_modules"
 
+on-run-start:
+    - '{{create_udfs()}}'
+
+# https://docs.getdbt.com/reference/resource-configs/quote_columns
+seeds:
+  +quote_columns: true
+
+# Configuring global variables
+vars:
+    aprcot_DW:
+        raw_schema: 'bronze'
+        source_table: '_dbt_source_relation'
+        f5500_source_table_year: 'source_table_year'
+        f5500_id: 'f5500_id'
+        f5500_ein: 'ein'
+        f5500_plan_year_begin_date: 'plan_year_begin_date'
+        f5500_corrupted_plan_year_begin_date: 'corrupted_plan_year_begin_date'
+        f5500_plan_effective_date: 'plan_effective_date'
+        f5500_corrupted_plan_eff_date: 'corrupted_plan_eff_date'
+        f5500_plan_name: 'plan_name'
+        f5500_date_received: 'date_received'
+        f5500_corrupted_date_received_date: 'corrupted_date_received_date'
+        f5500_naics_code: 'naics_code'
+        f5500_sponsor_corporate_name: 'sponsor_corporate_name'
+        f5500_doing_busines_as_name: 'doing_busines_as_name'
+        f5500_boy_partcp_count: 'boy_partcp_count'
+        f5500_is_boy_partcp_count_active_only: 'is_boy_partcp_count_active_only'
+        f5500_is_eoy_partcp_count_active_only: 'is_eoy_partcp_count_active_only'
+        f5500_eoy_active_partcp_count: 'eoy_active_partcp_count'
+        f5500_pre_2009_mailing_address: 'pre_2009_mailing_address'
+        f5500_pre_2009_mailing_city: 'pre_2009_mailing_city'
+        f5500_pre_2009_state: 'pre_2009_state'
+        f5500_pre_2009_zip_code: 'pre_2009_zip_code'
+        f5500_pre_2009_loc_address: 'pre_2009_loc_address'
+        f5500_us_mail_address1: 'us_mail_address1'
+        f5500_us_mail_address2: 'us_mail_address2'
+        f5500_us_mail_city: 'us_mail_city'
+        f5500_us_mail_state: 'us_mail_state'
+        f5500_us_mail_zip_code: 'us_mail_zip_code'
+        f5500_us_loc_address1: 'us_loc_address1'
+        f5500_us_loc_address2: 'us_loc_address2'
+        f5500_us_loc_city: 'us_loc_city'
+        f5500_us_loc_state: 'us_loc_state'
+        f5500_us_loc_zip_code: 'us_loc_zip_code'
+        f5500_foreign_address1: 'foreign_address_1'
+        f5500_foreign_address2: 'foreign_address_2'
+        f5500_foreign_mail_city: 'foreign_mail_city'
+        f5500_foreign_mail_province_or_state: 'foreign_mail_province_or_state'
+        f5500_foreign_mail_country: 'foreign_mail_country'
+        f5500_foreign_mail_postal_code: 'foreign_mail_postal_code'
+        f5500_foreign_loc_address1: 'foreign_loc_address1'
+        f5500_foreign_loc_address2: 'foreign_loc_address2'
+        f5500_foreign_loc_city: 'foreign_loc_city'
+        f5500_foreign_loc_province_or_state: 'foreign_loc_province_or_state'
+        f5500_foreign_loc_country: 'foreign_loc_country'
+        f5500_foreign_loc_postal_code: 'foreign_loc_postal_code'
+        f5500_contact_phone_num: 'contact_phone_num'
+        f5500_foreign_phone_number: foreign_phone_number
+        f5500_contact_name: 'contact_name'
+        f5500_admin_signed_name: 'plan_admin_name'
+        f5500_admin_phone_num: 'plan_admin_phone_num'
+        f5500_admin_foreign_phone_num: 'plan_admin_foreign_phone_num'
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
@@ -32,7 +94,10 @@ clean-targets:         # directories to be removed by `dbt clean`
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 models:
-  my_new_project:
-      # Applies to all files under models/example/
-      example:
-          materialized: view
+    aprcot_DW:
+        src_pre_processing:
+            materialized: view
+        dim_tables:
+            materialized: view
+        fct_tables:
+            materialized: view
