@@ -14,3 +14,8 @@ models:
         tests:
           - unique
           - not_null
+      - name: "{{ var('f5500_naics_code') }}"
+        tests:
+          - column_is_n_digits_long:
+              n: 6
+              acceptable_fail_rate: 0.02
