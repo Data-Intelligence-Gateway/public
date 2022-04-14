@@ -2,7 +2,8 @@
     materialized='table',
     indexes=[
         {'columns': [var('f5500_source_table_year')]},
-        {'columns': [var('f5500_naics_code')]}
+        {'columns': [var('f5500_naics_code')]},
+        {'columns': [var('f5500_ein')]}
     ]
 ) }}
 
