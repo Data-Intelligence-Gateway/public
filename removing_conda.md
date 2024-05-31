@@ -1,4 +1,8 @@
 # Migration Instructions for the DIG Team
+
+## Introduction
+This document directs macOS users on how to remove conda from their systems while retaining some partial backups of existing environments.
+
 ## Removing conda
 1. Find your conda installation location
     1. If you don't have a conda environment active, run 
