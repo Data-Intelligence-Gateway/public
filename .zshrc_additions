@@ -7,10 +7,6 @@ alias pbuild='python3 -m build'
 alias pdeploy='python3 -m twine upload --repository jfrog dist/*'
 alias pbd='pbuild && pdeploy'
 
-# --- conda
-alias clist="conda env list"
-alias cact="conda activate"
-
 # --- system
 alias dev="cd ~/<your development directory>"
 
