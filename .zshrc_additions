@@ -7,6 +7,9 @@ alias pbuild='python3 -m build'
 alias pdeploy='python3 -m twine upload --repository jfrog dist/*'
 alias pbd='pbuild && pdeploy'
 
+# --- git
+alias gtrigger="git commit --allow-empty -m 'Empty Commit for Trigger'"
+
 # --- system
 alias dev="cd ~/<your development directory>"
 
